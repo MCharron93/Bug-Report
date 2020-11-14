@@ -30,7 +30,7 @@
     </div>
 
     <div class="collapse row justify-content-center p-2" id="collapseNoteForm">
-      <form @submit.prevent="createNote" class="col-10">
+      <form @submit.prevent="createNote" class="col-10 form-reset">
         <div class=" card p-3">
           <textarea cols="60" rows="8" placeholder="Create note details..." v-model="state.newNote.content"></textarea>
           <div class="d-flex justify-content-end p-3">
@@ -74,6 +74,8 @@ export default {
       notes: computed(() => AppState.activeBugNotes),
       createNote() {
         notesService.createNote(state.newNote)
+        // document.querySelector('.form-reset').reset()
+        this.state.newNote.content = ''
       }
     }
   },

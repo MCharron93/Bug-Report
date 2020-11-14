@@ -5,8 +5,7 @@ import { logger } from '../utils/Logger'
 class NotesService {
   async createNote(newNoteData) {
     try {
-      const res = await api.post('/api/notes', newNoteData)
-      AppState.activeBugNotes = res.data
+      await api.post('/api/notes', newNoteData)
       this.getNotesByBugId(newNoteData.bugId)
     } catch (error) {
       logger.error(error)
