@@ -18,7 +18,6 @@
 <script>
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
-// import ActiveBugPageVue from '../pages/ActiveBugPage.vue'
 import { bugsService } from '../services/BugsService'
 export default {
   name: 'BugComponent',

@@ -6,7 +6,8 @@ class BugsService {
   async inspectBug(id) {
     try {
       const res = await api.get('/api/bugs/' + id)
-      logger.log(res.data)
+      AppState.activeBug = res.data
+      logger.log(AppState.activeBug)
     } catch (error) {
       logger.error(error)
     }

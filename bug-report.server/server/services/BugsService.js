@@ -1,8 +1,8 @@
 import { dbContext } from '../db/DbContext'
 
 class BugsService {
-  inspectBug(_id) {
-    throw new Error('Method not implemented.')
+  async inspectBug(id) {
+    return await dbContext.Bug.findById(id)
   }
 
   async createBug(body) {
