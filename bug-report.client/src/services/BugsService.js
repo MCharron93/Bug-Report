@@ -13,8 +13,14 @@ class BugsService {
     }
   }
 
-  async createBug() {
-
+  async createBug(newBugReport) {
+    try {
+      await api.post('/api/bugs', newBugReport)
+      this.getAllBugs()
+      // logger.log(AppState.bugs)
+    } catch (error) {
+      logger.error(error)
+    }
   }
 
   async getAllBugs() {
