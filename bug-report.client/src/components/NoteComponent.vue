@@ -26,7 +26,7 @@ export default {
   setup(props) {
     return {
       profile: computed(() => AppState.profile),
-      notes: computed(() => props.noteProps)
+      notes: computed(() => props.noteProp)
     }
   },
   components: {}

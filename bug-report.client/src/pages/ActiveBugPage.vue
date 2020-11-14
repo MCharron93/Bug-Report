@@ -30,9 +30,9 @@
     </div>
 
     <div class="collapse row justify-content-center p-2" id="collapseNoteForm">
-      <form @submit="createNote" class="col-10">
+      <form @submit.prevent="createNote" class="col-10">
         <div class=" card p-3">
-          <textarea cols="60" rows="8" placeholder="Create note details..." v-model="state.newNote.body"></textarea>
+          <textarea cols="60" rows="8" placeholder="Create note details..." v-model="state.newNote.content"></textarea>
           <div class="d-flex justify-content-end p-3">
             <button type="submit" class="btn btn-sm btn-info fit-content">
               Create Note
@@ -43,7 +43,7 @@
     </div>
 
     <div class="row justify-content-center p-4">
-      <note-component v-for="n in notes" :key="n" :note-props="n" />
+      <note-component v-for="n in notes" :key="n._id" :note-props="n" />
     </div>
   </div>
 </template>
@@ -60,7 +60,9 @@ export default {
   setup() {
     const route = useRoute()
     const state = reactive({
-      newNote: {}
+      newNote: {
+        bugId: route.params.bugId
+      }
     })
     onMounted(() => {
       bugsService.inspectBug(route.params.bugId)
