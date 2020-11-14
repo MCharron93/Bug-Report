@@ -9,8 +9,11 @@
     <h6 class="col-3 text-left">
       Date Closed: {{ bugProp.closedDate }}
     </h6>
-    <h6 class="col-3 text-left">
-      Status: {{ bugProp.closed }}
+    <h6 class="col-3 text-left" v-if="bugProp.closed == false">
+      Status: Open
+    </h6>
+    <h6 class="col-3 text-left" v-else-if="bugProp.closed == true">
+      Status: Closed
     </h6>
   </div>
 </template>

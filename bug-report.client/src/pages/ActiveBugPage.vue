@@ -1,41 +1,47 @@
 <template>
   <div class="activeBugPage container-fluid">
     <div class="row justify-content-center p-4">
-      <div class="card p-4 col-8">
-        <h5 class="p-1">
+      <div class="card p-4 col-10">
+        <h5 class="p-4 row justify-content-between">
           {{ activeBug.title }}
-        </h5>
-        <div class="d-flex justify-content-end">
-          <h6>Status: Here the status will toggle to open or closed based on bool</h6>
-          <button class="btn btn-secondary">
-            change status w/ @click to change bool stats
+          <button class="btn btn-sm btn-secondary" v-if="activeBug.closed == false">
+            Close
           </button>
-        </div>
+          <button class="btn btn-sm btn-secondary" v-else-if="activeBug.closed == true">
+            Closed: {{ activeBug.closedDate }}
+          </button>
+        </h5>
         <hr>
-        <div class="row">
-          <p class="col-10">
-            {{ activeBug.description }}
-          </p>
-        </div>
+        <p class="col-10">
+          {{ activeBug.description }}
+        </p>
       </div>
     </div>
     <div class="row">
-      Notes will go here, col-10 w/ some padding and centering
+      <note-component v-for="n in notes" :key="n" :note-props="n" />
     </div>
   </div>
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 import { AppState } from '../AppState'
+import { notesService } from '../services/NotesService'
+import noteComponent from '../components/NoteComponent'
 export default {
   name: 'ActiveBugPage',
   setup() {
+    const route = useRoute()
+    onMounted(() => {
+      notesService.getNotesByBugId(route.params.bugId)
+    })
     return {
-      activeBug: computed(() => AppState.activeBug)
+      activeBug: computed(() => AppState.activeBug),
+      notes: computed(() => AppState.activeBugNotes)
     }
-  }
-  // components:{}
+  },
+  components: { noteComponent }
 }
 </script>
 

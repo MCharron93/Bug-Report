@@ -7,7 +7,7 @@ class BugsService {
     try {
       const res = await api.get('/api/bugs/' + id)
       AppState.activeBug = res.data
-      logger.log(AppState.activeBug)
+      // logger.log(AppState.activeBug)
     } catch (error) {
       logger.error(error)
     }
