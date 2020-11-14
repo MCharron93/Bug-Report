@@ -1,9 +1,9 @@
 <template>
   <div class="noteComponent col-10 p-3 card">
     <div class="d-flex justify-content-between">
-      <h6 class="p-2">
+      <h5 class="p-2">
         {{ noteProps.content }}
-      </h6>
+      </h5>
       <p class="justify-self-end" v-if="noteProps.reportedBy == profile._id">
         &times;
       </p>
@@ -15,7 +15,6 @@
 </template>
 
 <script>
-// import { AppState } from '../AppState'
 import { computed } from 'vue'
 import { AppState } from '../AppState'
 

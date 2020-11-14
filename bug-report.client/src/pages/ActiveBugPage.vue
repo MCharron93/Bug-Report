@@ -17,9 +17,33 @@
         </p>
       </div>
     </div>
-    <h5 class="px-5 ">
-      Recommendations:
-    </h5>
+    <div class="row justify-content-between">
+      <h5 class="offset-1 col-8 p-4">
+        Recommendations:
+      </h5>
+      <i class="material-icons p-4 col-2"
+         data-toggle="collapse"
+         data-target="#collapseNoteForm"
+         aria-expanded="false"
+         aria-controls="collapseNoteForm"
+      >note_add</i>
+    </div>
+
+    <div class="collapse row justify-content-center p-3" id="collapseNoteForm">
+      <form @submit="createNote" class="col-10">
+        <div class=" card p-3">
+          <p>
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+          </p>
+          <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-sm btn-info fit-content">
+              Create Note
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
     <div class="row justify-content-center">
       <note-component v-for="n in notes" :key="n" :note-props="n" />
     </div>
@@ -27,7 +51,7 @@
 </template>
 
 <script>
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import { AppState } from '../AppState'
 import { notesService } from '../services/NotesService'
@@ -37,11 +61,15 @@ export default {
   name: 'ActiveBugPage',
   setup() {
     const route = useRoute()
+    const state = reactive({
+      newNote: {}
+    })
     onMounted(() => {
       bugsService.inspectBug(route.params.bugId)
       notesService.getNotesByBugId(route.params.bugId)
     })
     return {
+      state,
       activeBug: computed(() => AppState.activeBug),
       notes: computed(() => AppState.activeBugNotes)
     }
@@ -51,5 +79,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.material-icons{
+  color: #27AE60;
+}
 </style>

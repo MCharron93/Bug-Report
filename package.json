@@ -1,11 +1,12 @@
-
-  {
-    "name": "bug-report",
-    "version": "1.0.0",
-    "scripts": {
-      "setup": "npm run setup:client && npm run setup:server",
-      "setup:client": "cd bug-report.client && npm i",
-      "setup:server": "cd bug-report.server && npm i"
-    }
+{
+  "name": "bug-report",
+  "version": "1.0.0",
+  "scripts": {
+    "setup": "npm run setup:client && npm run setup:server",
+    "setup:client": "cd bug-report.client && npm i",
+    "setup:server": "cd bug-report.server && npm i"
+  },
+  "dependencies": {
+    "material-design-icons": "^3.0.1"
   }
-  
+}
