@@ -3,6 +3,19 @@ import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
 
 class BugsService {
+  async inspectBug(id) {
+    try {
+      const res = await api.get('/api/bugs/' + id)
+      logger.log(res.data)
+    } catch (error) {
+      logger.error(error)
+    }
+  }
+
+  async createBug() {
+
+  }
+
   async getAllBugs() {
     try {
       const res = await api.get('/api/bugs')

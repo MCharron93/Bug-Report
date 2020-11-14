@@ -8,7 +8,16 @@ export class BugsController extends BaseController {
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getAllBugs)
+      .get('/:_id', this.inspectBug)
       .post('', this.createBug)
+  }
+
+  async inspectBug(req, res, next) {
+    try {
+      res.send(await bugsService.inspectBug(req.params._id))
+    } catch (error) {
+      next(error)
+    }
   }
 
   async createBug(req, res, next) {

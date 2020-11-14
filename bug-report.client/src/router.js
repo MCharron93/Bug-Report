@@ -22,6 +22,12 @@ const routes = [
     name: 'Profile',
     component: loadPage('ProfilePage'),
     beforeEnter: authGuard
+  },
+  {
+    path: '/bug/:bugId',
+    name: 'ActiveBugPage',
+    component: loadPage('ActiveBugPage'),
+    beforeEnter: authGuard
   }
 ]
 
