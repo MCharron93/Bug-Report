@@ -5,7 +5,7 @@
         <span class="mx-2 text-white">Bugs Reported</span>
       </h3>
     </div>
-    <div class="row">
+    <div>
       <bug-component v-for="b in bugs" :key="b.title" :bug-prop="b" />
     </div>
   </div>
