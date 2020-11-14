@@ -2,7 +2,10 @@
   <div class="activeBugPage container-fluid">
     <div class="row justify-content-center p-4">
       <div class="card p-4 col-8">
-        <h5>{{ activeBug.title }}</h5>
+        <h5 class="p-2">
+          {{ activeBug.title }}
+        </h5>
+        <p>{{ activeBug.description }}</p>
       </div>
     </div>
   </div>
