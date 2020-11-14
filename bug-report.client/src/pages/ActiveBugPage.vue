@@ -18,10 +18,10 @@
       </div>
     </div>
     <div class="row justify-content-between">
-      <h5 class="offset-1 col-8 p-4">
+      <h5 class="offset-1 col-8 px-5">
         Recommendations:
       </h5>
-      <i class="material-icons p-4 col-2"
+      <i class="material-icons col-2"
          data-toggle="collapse"
          data-target="#collapseNoteForm"
          aria-expanded="false"
@@ -29,13 +29,11 @@
       >note_add</i>
     </div>
 
-    <div class="collapse row justify-content-center p-3" id="collapseNoteForm">
+    <div class="collapse row justify-content-center p-2" id="collapseNoteForm">
       <form @submit="createNote" class="col-10">
         <div class=" card p-3">
-          <p>
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-          </p>
-          <div class="d-flex justify-content-end">
+          <textarea cols="60" rows="8" placeholder="Create note details..." v-model="state.newNote.body"></textarea>
+          <div class="d-flex justify-content-end p-3">
             <button type="submit" class="btn btn-sm btn-info fit-content">
               Create Note
             </button>
@@ -44,7 +42,7 @@
       </form>
     </div>
 
-    <div class="row justify-content-center">
+    <div class="row justify-content-center p-4">
       <note-component v-for="n in notes" :key="n" :note-props="n" />
     </div>
   </div>
@@ -71,7 +69,10 @@ export default {
     return {
       state,
       activeBug: computed(() => AppState.activeBug),
-      notes: computed(() => AppState.activeBugNotes)
+      notes: computed(() => AppState.activeBugNotes),
+      createNote() {
+        notesService.createNote(state.newNote)
+      }
     }
   },
   components: { noteComponent }
