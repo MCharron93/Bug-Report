@@ -4,7 +4,7 @@
       <h5 class="p-2">
         {{ noteProps.content }}
       </h5>
-      <p class="justify-self-end red" v-if="noteProps.reportedBy == profile._id">
+      <p class="justify-self-end red" v-if="noteProps.reportedBy == profile._id" @click="deleteNote">
         &times;
       </p>
     </div>
@@ -17,6 +17,7 @@
 <script>
 import { computed } from 'vue'
 import { AppState } from '../AppState'
+import { notesService } from '../services/NotesService'
 
 export default {
   name: 'NoteComponent',
@@ -26,7 +27,10 @@ export default {
   setup(props) {
     return {
       profile: computed(() => AppState.profile),
-      notes: computed(() => props.noteProp)
+      notes: computed(() => props.noteProp),
+      deleteNote() {
+        notesService.deleteNote(props.noteProps)
+      }
     }
   },
   components: {}

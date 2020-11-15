@@ -3,6 +3,16 @@ import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
 
 class NotesService {
+  async deleteNote(noteData) {
+    try {
+      logger.log(noteData)
+      await api.delete('/api/notes/' + noteData._id)
+      this.getNotesByBugId(noteData.bugId)
+    } catch (error) {
+      logger.log(error)
+    }
+  }
+
   async createNote(newNoteData) {
     try {
       await api.post('/api/notes', newNoteData)
