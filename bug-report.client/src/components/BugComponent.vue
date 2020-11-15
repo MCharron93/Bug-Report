@@ -7,7 +7,7 @@
       {{ bugProp.creator.name }}
     </h6>
     <h6 class="col-3 text-left">
-      Date Closed: {{ bugProp.closedDate }}
+      Created: {{ bugProp.createdAt }}
     </h6>
     <h6 class="col-3 text-left" v-if="bugProp.closed == false">
       Status: Open

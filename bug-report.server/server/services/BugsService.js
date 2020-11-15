@@ -1,6 +1,17 @@
 import { dbContext } from '../db/DbContext'
 
 class BugsService {
+  async closeBug(bugId) {
+    return await dbContext.Bug.findByIdAndUpdate(bugId, { closed: true })
+  }
+
+  async editBug(bugId, body) {
+    const exists = dbContext.Bug.findById(bugId)
+    if (!exists.closed) {
+      return await dbContext.Bug.findByIdAndUpdate(bugId, body, { new: true })
+    }
+  }
+
   async inspectBug(id) {
     return await dbContext.Bug.findById(id)
   }

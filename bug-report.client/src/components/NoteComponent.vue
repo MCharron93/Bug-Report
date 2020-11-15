@@ -4,7 +4,7 @@
       <h5 class="p-2">
         {{ noteProps.content }}
       </h5>
-      <p class="justify-self-end" v-if="noteProps.reportedBy == profile._id">
+      <p class="justify-self-end red" v-if="noteProps.reportedBy == profile._id">
         &times;
       </p>
     </div>
@@ -34,5 +34,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.red{
+  color: red
+}
 </style>

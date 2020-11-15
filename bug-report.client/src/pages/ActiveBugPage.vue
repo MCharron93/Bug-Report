@@ -4,17 +4,64 @@
       <div class="card p-4 col-10">
         <h4 class="p-4 row justify-content-between">
           {{ activeBug.title }}
-          <button class="btn btn-sm btn-secondary" v-if="activeBug.closed == false">
-            Close
-          </button>
-          <button class="btn btn-sm btn-secondary" v-else-if="activeBug.closed == true">
-            Closed: {{ activeBug.closedDate }}
-          </button>
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-info"
+                    v-if="profile._id == activeBug.reportedBy && activeBug.closed == false"
+                    type="button"
+                    data-toggle="modal"
+                    data-target="#editBugForm"
+            >
+              Edit
+            </button>
+            <button class="btn btn-sm btn-secondary" v-if="activeBug.closed == false" @click="closeBug">
+              Close?
+            </button>
+            <button class="btn btn-sm btn-secondary" v-else-if="activeBug.closed">
+              Closed
+            </button>
+          </div>
         </h4>
+
+        <!-- Insert Modal to Edit Bug -->
+        <div class="modal fade"
+             id="editBugForm"
+             tabindex="-1"
+             role="dialog"
+             aria-labelledby="editBugFormLabel"
+             aria-hidden="true"
+        >
+          <form @submit.prevent="editBug">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="editBugFormLabel">
+                    <input type="text" :placeholder="activeBug.title" v-model="state.edittedBug.title">
+                  </h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <textarea :placeholder="activeBug.description" cols="60" rows="10" v-model="state.edittedBug.description"></textarea>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    Close
+                  </button>
+                  <button type="submit" class="btn btn-primary">
+                    Save changes
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
         <hr>
         <p class="col-10 p-2">
           {{ activeBug.description }}
         </p>
+        <p>Last updated on {{ activeBug.updatedAt }}</p>
       </div>
     </div>
     <div class="row justify-content-between">
@@ -62,6 +109,9 @@ export default {
     const state = reactive({
       newNote: {
         bugId: route.params.bugId
+      },
+      edittedBug: {
+        bugId: route.params.bugId
       }
     })
     onMounted(() => {
@@ -70,12 +120,24 @@ export default {
     })
     return {
       state,
+      profile: computed(() => AppState.profile),
       activeBug: computed(() => AppState.activeBug),
+      // date: AppState.activeBug.updatedAt.slice(0, 10),
+      // date: computed(() => AppState.activeBug.updatedAt),
       notes: computed(() => AppState.activeBugNotes),
       createNote() {
         notesService.createNote(state.newNote)
         // document.querySelector('.form-reset').reset()
         this.state.newNote.content = ''
+      },
+      // convertDate() {
+      //   return AppState.activeBug.updatedAt.slice(0, 10)
+      // }
+      editBug() {
+        bugsService.editBug(state.edittedBug)
+      },
+      closeBug() {
+        bugsService.closeBug(route.params.bugId)
       }
     }
   },
