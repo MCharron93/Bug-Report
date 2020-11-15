@@ -1,19 +1,19 @@
 <template>
-  <div class="bugComponent row p-3" @click="inspectBug">
-    <h6 class="col-3 text-left">
+  <div class="bugComponent row my-2 p-3" @click="inspectBug" :style="bugProp.closed?'background-color:#61db94c9':'background-color: #eb5757'">
+    <h6 class="col-3">
       {{ bugProp.title }}
     </h6>
-    <h6 class="col-3 text-left">
+    <h6 class="col-3">
       {{ bugProp.creator.name }}
     </h6>
-    <h6 class="col-3 text-left">
-      Created: {{ bugProp.createdAt }}
+    <h6 class="col-3">
+      {{ bugProp.createdAt }}
     </h6>
-    <h6 class="col-3 text-left" v-if="bugProp.closed == false">
-      Status: Open
+    <h6 class="col-3" v-if="bugProp.closed == false">
+      Open
     </h6>
-    <h6 class="col-3 text-left" v-else-if="bugProp.closed == true">
-      Status: Closed
+    <h6 class="col-3" v-else-if="bugProp.closed == true">
+      Closed
     </h6>
   </div>
 </template>
@@ -30,6 +30,7 @@ export default {
   setup(props) {
     const router = useRouter()
     const state = reactive({
+
     })
     return {
       state,
@@ -37,6 +38,7 @@ export default {
         router.push({ name: 'ActiveBugPage', params: { bugId: props.bugProp._id } })
         bugsService.inspectBug(props.bugProp._id)
       }
+
     }
   },
   components: {}

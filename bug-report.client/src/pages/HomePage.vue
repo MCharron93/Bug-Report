@@ -11,6 +11,20 @@
         <span class="mx-2 text-white">Bugs Reported</span>
       </h3>
     </div>
+    <div class="row justify-content-around mx-3">
+      <div class="col-2">
+        Title
+      </div>
+      <div class="col-2">
+        User
+      </div>
+      <div class="col-2">
+        Created
+      </div>
+      <div class="col-2">
+        Status
+      </div>
+    </div>
     <hr>
     <div>
       <bug-component v-for="b in bugs" :key="b.title" :bug-prop="b" />
