@@ -21,8 +21,11 @@
       <div class="col-2">
         Created
       </div>
-      <div class="col-2">
+      <div class="text-right col-2">
         Status
+      </div>
+      <div @click="sortByStatus">
+        <i class="material-icons">sort</i>
       </div>
     </div>
     <hr>
@@ -74,6 +77,7 @@ import bugComponent from '../components/BugComponent'
 import { AppState } from '../AppState'
 import { profileService } from '../services/ProfileService'
 import $ from 'jquery'
+import { logger } from '../utils/Logger'
 
 export default {
   name: 'Home',
@@ -93,7 +97,18 @@ export default {
         bugsService.createBug(state.newBugReport)
         $('#bugFormModal').modal('toggle')
         $('.modal-backdrop').remove()
-        this.state.newBugReport = ''
+        this.state.newBugReportmat = ''
+      },
+      sortByStatus() {
+        const bugs = AppState.bugs
+        if (bugs[0].closed === true) {
+          const sorted = bugs.reverse()
+          return sorted
+        } else if (bugs[0].closed === false) {
+          const sorted = bugs.reverse()
+          logger.log(sorted)
+          return sorted
+        }
       }
     }
   },
