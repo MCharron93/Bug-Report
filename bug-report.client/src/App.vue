@@ -10,8 +10,8 @@
     </router-view>
   </main>
   <footer>
-    <div class="bg-dark text-light text-center p-4">
-      Made with 💖 by CodeWorks
+    <div class="bg-dark text-info text-center p-4">
+      Find a problem. Find the solution.
     </div>
   </footer>
 </template>

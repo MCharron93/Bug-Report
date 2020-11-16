@@ -7,8 +7,8 @@
       </button>
     </div>
     <div class="row justify-content-center">
-      <h3 class="my-4 bg-dark text-light p-3 rounded">
-        <span class="mx-2 text-white">Bugs Reported</span>
+      <h3 class="my-4 bg-dark p-3 rounded">
+        <span class="mx-2 text-info">Bugs Reported</span>
       </h3>
     </div>
     <div class="row justify-content-around mx-3">

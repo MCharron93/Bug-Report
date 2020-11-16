@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <h2 class="text-success">
+        <h2 class="text-info">
           <i class="fas fa-pastafarianism"></i>    Bug Report
         </h2>
       </div>
@@ -21,17 +21,17 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <router-link :to="{ name: 'Home' }" class="nav-link text-success">
+          <router-link :to="{ name: 'Home' }" class="nav-link text-info">
             Home
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link :to="{ name: 'About' }" class="nav-link text-success">
+          <router-link :to="{ name: 'About' }" class="nav-link text-info">
             About
           </router-link>
         </li>
       </ul>
-      <span class="text-success">
+      <span class="text-info">
         <button
           class="btn btn-outline-primary text-uppercase"
           @click="login"
