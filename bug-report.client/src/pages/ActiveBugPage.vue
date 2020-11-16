@@ -61,7 +61,9 @@
         <p class="col-10 p-2">
           {{ activeBug.description }}
         </p>
-        <p>Last updated on {{ activeBug.updatedAt }}</p>
+        <p v-if="date.length > 0">
+          Last updated on {{ convertDate() }}
+        </p>
       </div>
     </div>
     <div class="row justify-content-between">
@@ -114,25 +116,25 @@ export default {
         bugId: route.params.bugId
       }
     })
-    onMounted(() => {
-      bugsService.inspectBug(route.params.bugId)
-      notesService.getNotesByBugId(route.params.bugId)
+    onMounted(async() => {
+      await bugsService.inspectBug(route.params.bugId)
+      await notesService.getNotesByBugId(route.params.bugId)
     })
     return {
       state,
       profile: computed(() => AppState.profile),
       activeBug: computed(() => AppState.activeBug),
       // date: AppState.activeBug.updatedAt.slice(0, 10),
-      // date: computed(() => AppState.activeBug.updatedAt),
+      date: computed(() => AppState.activeBug.updatedAt),
       notes: computed(() => AppState.activeBugNotes),
       createNote() {
         notesService.createNote(state.newNote)
         // document.querySelector('.form-reset').reset()
         this.state.newNote.content = ''
       },
-      // convertDate() {
-      //   return AppState.activeBug.updatedAt.slice(0, 10)
-      // }
+      convertDate() {
+        return AppState.activeBug.updatedAt.slice(0, 10)
+      },
       editBug() {
         bugsService.editBug(state.edittedBug)
       },

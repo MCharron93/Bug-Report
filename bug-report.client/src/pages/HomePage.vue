@@ -31,16 +31,16 @@
     </div>
 
     <!-- Bug Modal Form -->
-    <div class="modal fade"
-         id="bugFormModal"
-         tabindex="-1"
-         role="dialog"
-         aria-labelledby="bugFormModalTitle"
-         aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <form action="">
+    <form>
+      <div class="modal fade"
+           id="bugFormModal"
+           tabindex="-1"
+           role="dialog"
+           aria-labelledby="bugFormModalTitle"
+           aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="bugFormModalTitle">
                 <input type="text" placeholder="Bug Report Title" v-model="state.newBugReport.title">
@@ -60,10 +60,10 @@
                 Report
               </button>
             </div>
-          </form>
+          </div>
         </div>
       </div>
-    </div>
+    </form>
   </div>
 </template>
 
@@ -73,6 +73,7 @@ import { bugsService } from '../services/BugsService'
 import bugComponent from '../components/BugComponent'
 import { AppState } from '../AppState'
 import { profileService } from '../services/ProfileService'
+import $ from 'jquery'
 
 export default {
   name: 'Home',
@@ -90,6 +91,9 @@ export default {
       bugs: computed(() => AppState.bugs),
       createBug() {
         bugsService.createBug(state.newBugReport)
+        $('#bugFormModal').modal('toggle')
+        $('.modal-backdrop').remove()
+        this.state.newBugReport = ''
       }
     }
   },
