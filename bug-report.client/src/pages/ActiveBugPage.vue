@@ -125,7 +125,7 @@ export default {
       profile: computed(() => AppState.profile),
       activeBug: computed(() => AppState.activeBug),
       // date: AppState.activeBug.updatedAt.slice(0, 10),
-      date: computed(() => AppState.activeBug.updatedAt),
+      date: computed(() => AppState.activeBug.updatedAt || ''),
       notes: computed(() => AppState.activeBugNotes),
       createNote() {
         notesService.createNote(state.newNote)
@@ -133,6 +133,8 @@ export default {
         this.state.newNote.content = ''
       },
       convertDate() {
+        // const date = new Date(AppState.activeBug.updatedAt)
+        // return date.getMonth() + '/' + date.getDay() + '/' + date.getFullYear()
         return AppState.activeBug.updatedAt.slice(0, 10)
       },
       editBug() {

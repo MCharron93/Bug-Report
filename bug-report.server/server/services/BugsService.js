@@ -1,9 +1,9 @@
 import { dbContext } from '../db/DbContext'
-import { UnAuthorized } from '../utils/Errors'
+import { Forbidden, UnAuthorized } from '../utils/Errors'
 
 class BugsService {
   async closeBug(bugId, userData) {
-    const isYours = dbContext.Bug.findById(bugId)
+    const isYours = await dbContext.Bug.findById(bugId)
     // @ts-ignore
     if (isYours.reportedBy === userData) {
       return await dbContext.Bug.findByIdAndUpdate(bugId, { closed: true })
@@ -13,10 +13,12 @@ class BugsService {
   }
 
   async editBug(bugId, body) {
-    const exists = dbContext.Bug.findById(bugId)
+    const exists = await dbContext.Bug.findById(bugId)
     // @ts-ignore
     if (!exists.closed) {
       return await dbContext.Bug.findByIdAndUpdate(bugId, body, { new: true })
+    } else {
+      throw new Forbidden('This item does not exist')
     }
   }
 
