@@ -1,15 +1,15 @@
 <template>
   <div class="home container-fluid">
-    <div class="my-2 d-flex justify-content-end">
+    <div class="my-1 d-flex justify-content-end">
       <!-- Modal Button Trigger -->
       <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#bugFormModal">
         Report?
       </button>
     </div>
     <div class="row justify-content-center">
-      <h3 class="my-4 bg-dark p-3 rounded">
+      <h4 class="my-4 bg-dark p-2 rounded">
         <span class="mx-2 text-info">Bugs Reported</span>
-      </h3>
+      </h4>
     </div>
     <div class="row justify-content-around mx-3">
       <div class="col-2">
