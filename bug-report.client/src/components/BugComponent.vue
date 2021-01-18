@@ -7,7 +7,7 @@
       {{ bugProp.creator.name }}
     </h6>
     <h6 class="col-3">
-      {{ bugProp.createdAt }}
+      {{ formattedDate }}
     </h6>
     <h6 class="col-3" v-if="bugProp.closed == false">
       Open
@@ -33,12 +33,12 @@ export default {
 
     })
     return {
+      formattedDate: new Date(Date.parse(props.bugProp.createdAt)).toString().substring(0, 24),
       state,
       inspectBug() {
         router.push({ name: 'ActiveBugPage', params: { bugId: props.bugProp._id } })
         bugsService.inspectBug(props.bugProp._id)
       }
-
     }
   },
   components: {}
