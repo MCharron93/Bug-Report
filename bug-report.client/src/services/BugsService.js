@@ -46,8 +46,6 @@ class BugsService {
   async getAllBugs() {
     try {
       const res = await api.get('/api/bugs')
-      res.data.forEach(x => { x.formattedDate = new Date(Date.parse(x.createdAt)) })
-      logger.log(res.data)
       AppState.bugs = res.data
     } catch (error) {
       logger.error(error)
