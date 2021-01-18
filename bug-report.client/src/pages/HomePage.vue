@@ -77,7 +77,6 @@ import bugComponent from '../components/BugComponent'
 import { AppState } from '../AppState'
 import { profileService } from '../services/ProfileService'
 import $ from 'jquery'
-import { logger } from '../utils/Logger'
 
 export default {
   name: 'Home',
