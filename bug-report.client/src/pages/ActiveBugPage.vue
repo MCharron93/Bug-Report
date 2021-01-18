@@ -62,7 +62,7 @@
           {{ activeBug.description }}
         </p>
         <p v-if="date.length > 0">
-          Last updated on {{ convertDate() }}
+          Last updated on: {{ date }}
         </p>
       </div>
     </div>
@@ -124,19 +124,18 @@ export default {
       state,
       profile: computed(() => AppState.profile),
       activeBug: computed(() => AppState.activeBug),
-      // date: AppState.activeBug.updatedAt.slice(0, 10),
-      date: computed(() => AppState.activeBug.updatedAt || ''),
+      date: computed(() => new Date(Date.parse(AppState.activeBug.updatedAt)).toString().substring(0, 24)),
       notes: computed(() => AppState.activeBugNotes),
       createNote() {
         notesService.createNote(state.newNote)
         // document.querySelector('.form-reset').reset()
         this.state.newNote.content = ''
       },
-      convertDate() {
-        // const date = new Date(AppState.activeBug.updatedAt)
-        // return date.getMonth() + '/' + date.getDay() + '/' + date.getFullYear()
-        return AppState.activeBug.updatedAt.slice(0, 10)
-      },
+      // convertDate() {
+      // const date = new Date(AppState.activeBug.updatedAt)
+      // return date.getMonth() + '/' + date.getDay() + '/' + date.getFullYear()
+      // return AppState.activeBug.updatedAt.slice(0, 10)
+      // },
       editBug() {
         bugsService.editBug(state.edittedBug)
       },
