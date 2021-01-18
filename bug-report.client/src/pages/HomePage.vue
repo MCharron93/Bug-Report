@@ -12,19 +12,19 @@
       </h4>
     </div>
     <div class="row justify-content-around mx-3">
-      <div class="col-2">
-        Title
+      <div class="col-3">
+        Title:
       </div>
-      <div class="col-2">
-        User
+      <div class="col-3">
+        User:
       </div>
-      <div class="col-2">
-        Created
+      <div class="col-3">
+        Created:
       </div>
       <div class="text-right col-2">
-        Status
+        Status: &nbsp;&nbsp;
       </div>
-      <div @click="sortByStatus">
+      <div @click="sortByStatus" class="col-1">
         <i class="material-icons">sort</i>
       </div>
     </div>
