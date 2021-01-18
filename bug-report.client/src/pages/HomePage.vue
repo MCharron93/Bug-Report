@@ -100,15 +100,12 @@ export default {
         this.state.newBugReportmat = ''
       },
       sortByStatus() {
+        // Sort by closed status
         const bugs = AppState.bugs
-        if (bugs[0].closed === true) {
-          const sorted = bugs.reverse()
-          return sorted
-        } else if (bugs[0].closed === false) {
-          const sorted = bugs.reverse()
-          logger.log(sorted)
-          return sorted
-        }
+        bugs.sort(function(x, y) {
+          return y.closed - x.closed
+        })
+        // logger.log(bugs)
       }
     }
   },
