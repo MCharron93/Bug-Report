@@ -46,7 +46,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// .opacity{
-//   opacity: 75%;
-// }
+
 </style>
