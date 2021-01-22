@@ -1,5 +1,5 @@
 <template>
-  <div class="bugComponent row my-2 p-3 opacity" @click="inspectBug" :style="bugProp.closed?'background-color:#61db94c9':'background-color: #eb5757'">
+  <div class="bugComponent row my-2 p-3" @click="inspectBug" :style="bugProp.closed?'background-color:#61db94c9':'background-color: #eb5757'">
     <h6 class="col-3">
       {{ bugProp.title }}
     </h6>
